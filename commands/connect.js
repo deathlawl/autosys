@@ -2,10 +2,10 @@
 	name: 'connect',
 	description: 'sends a user connected message',
 	execute(message, args) {
-		// grab the "first" mentioned user from the message
-	    // this will return a `User` object, just like `message.author`
+
+	    // this will convert the args array into the srting with spaces between arguments
 		var argsAsString = args.join(' ')
 
-	    message.channel.send(`${message.author} has connected.`);
+	    message.channel.send(`${argsAsString} has connected.`);
     }
 };

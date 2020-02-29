@@ -1,5 +1,5 @@
 	module.exports = {
-	name: 'connect',
+	name: 'disconnect',
 	description: 'sends a user disconnected message',
 	execute(message, args) {
 		// grab the "first" mentioned user from the message

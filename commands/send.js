@@ -4,7 +4,7 @@ module.exports = {
 	execute(message, args) {
        
     //gets the data from the coordinate file
-    ffs.readFile('./coordinates.json', (err, jsonString) => {
+    fs.readFile('./coordinates.json', (err, jsonString) => {
         if (err) {
             console.log("File read failed:", err)
             message.channel.send(`Whoops, can't seem to find any of the coordinates, ${message.author}`)

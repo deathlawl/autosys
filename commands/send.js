@@ -4,6 +4,7 @@ module.exports = {
 	execute(message, args) {
        
     //gets the data from the coordinate file
+    const fs = require('fs')
     fs.readFile('./coordinates.json', (err, jsonString) => {
         if (err) {
             console.log("File read failed:", err)

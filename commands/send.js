@@ -10,14 +10,18 @@ module.exports = {
     if (!args.length) {
         return message.channel.send(`${message.author}//send [location], [year], [planet], [timeline]`);
     }
-    else if (args.length === 1) { 
+    else { 
         //checks to see if the coordinates have been generated already, sends them and terminates the program
         for (var namesl in coordinates.locations) {
-            if (args[0] === coordinates.locations[namesl].name)
-                message.channel.send(`coordinates are ${coordinates.locations[namesl].coordinate}`)
+		var cont = true;
+		
+            if (args[0] === coordinates.locations[namesl].name) {
+		    cont = false;
+                message.channel.send(`coordinates are ${coordinates.locations[namesl].coordinate}`);
             }
         }
-    else if (args.length === 4) { 
+       
+    if (args.length === 4 && cont === true) { 
         //check to see if a specified timeline exists 
         for (var namest in coordinates.timelines) {
             if (args[3] === coordinates.timelines[namest].name)
@@ -77,7 +81,6 @@ module.exports = {
             var latir = Math.floor(Math.random() * 1800);
             var longir = Math.floor(Math.random() * 3600);
         }
-
         var FinalCoord = `${latir}${plIDarray[0]}-${longir}${plIDarray[1]}-${year}${plIDarray[2]}-${timeline}`
 
         message.channel.send(`coordinates are ${FinalCoord}`)

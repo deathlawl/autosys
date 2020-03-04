@@ -90,7 +90,7 @@ module.exports = {
 
         let locationN = JSON.stringify(location, null, 2);
 
-        coordinates.locations += timelineN
+        coordinates.locations += locationN
         console.log(coordinates.locations)
 
         }

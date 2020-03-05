@@ -62,7 +62,7 @@ module.exports = {
 
 
     }
-    
+    else if (cont === true && args.length === 4)
     { 
         //check to see if a specified timeline exists 
         for (var namesti in coordinates.timelines) {

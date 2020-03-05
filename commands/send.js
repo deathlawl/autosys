@@ -4,7 +4,10 @@ module.exports = {
 	execute(message, args) {
     const {prefix, token, geoToken } = require('C:/Users/ifhm2/Autosys/config.json');
     //gets the data from the coordinate file
-    const coordinates = require('./coordinates.json');
+    const fs = require('fs');
+    
+    let rawcoordinates = fs.readFileSync('C:/Users/ifhm2/Autosys/commands/coordinates.json');
+    let coordinates = JSON.parse(rawcoordinates);
     console.log(args)
     //checks if there are arguments, if not asks for them
     if (!args.length) {
@@ -12,89 +15,113 @@ module.exports = {
     }
     else { 
         //checks to see if the coordinates have been generated already, sends them and terminates the program
-        for (var namesl in coordinates.locations) {
+        for (var nameslo in coordinates.locations) {
 		var cont = true;
 		
-            if (args[0] === coordinates.locations[namesl].name) {
+            if (args[0] === coordinates.locations[nameslo].name) {
 		    cont = false;
-                message.channel.send(`coordinates are ${coordinates.locations[namesl].coordinate}`);
+                message.channel.send(`coordinates are ${coordinates.locations[nameslo].coordinate}`);
             }
         }
        
-    if (args.length === 4 && cont === true) { 
-        //check to see if a specified timeline exists 
-        for (var namest in coordinates.timelines) {
-            if (args[3] === coordinates.timelines[namest].name)
-                var timeline = coordinates.timelines[namest].coordinate
-                //generates and saves a new timeline, with coordinate
-            } if (args[3] !== coordinates.timelines[namest].name) {
-                //generates the timeline number                
-                var timeline = Math.floor(Math.random() * 4001);
-                //makes the timeline number + name into a JSON object
-                let coordinate = {
-                    name: args[3],
-                    coordinate: timeline
-                }
-                //stringifys the object
-                let timelineN = JSON.stringify(coordinate, null, 2);
-                //places the object into the JSONarray
-                coordinates.timelines += timelineN
-                console.log(coordinates.timelines)
-            }
+    if (cont === true && args.length === 3) {
+
+        var timeline = coordinates.timelines[0].coordinate
 
         //generate planet code
-        var plIDarray = args[2].split("");
+        var argsCap = args[2].toUpperCase();
+        var plIDarray = argsCap.split("");
 
         //adjusts year
-        var year = args[1] + 6000
+        var yearadj = 6000;
+        typeof (yearadj - 0);
 
-        //checks for earth, if earth use real coords
-        if (args[2] === "earth") {
+        var a = `${args[1]}`
+            b = `6000`
+
+
+        var year = ((a - 0) + (b - 0));
+
+        //generates first 2 coordinates
+        var latir = Math.floor(Math.random() * 1800);
+        var longir = Math.floor(Math.random() * 3600);
             
-            const https = require('https');
-            //get the json file from the API
-            https.get(`https://us1.locationiq.com/v1/search.php?key=${geoToken}&q=${args[0]}&format=json`, (resp) => {
-                let data = '';
-            })
-            //data in chunks
-            resp.on('data', (chunk) => {
-                data += chunk;
-              });
+            var finalCoord = `${latir}${plIDarray[0]}-${longir}${plIDarray[1]}-${year}${plIDarray[2]}-${timeline}${plIDarray[4]}`
+    
+            message.channel.send(`coordinates are ${finalCoord}`)
+            console.log('generation complete')
 
-            resp.on('end', () => {
-                var longlat = JSON.parse(data).explanation
-            });
-            //converts lat/lon to an all positive system
-            var lat = longlat[0].lat + 90
-            var long = longlat[0].lon + 180
-
-            var lati = lat * 10
-            var longi = long * 10
-
-            var latir = Math.round(lati)
-            var longir = Math.round(longi)
-             
-            //generates lat/lon for non-earth planets and places that fail the search
-            }
-        }
-        else {
-            var latir = Math.floor(Math.random() * 1800);
-            var longir = Math.floor(Math.random() * 3600);
-        }
-        var FinalCoord = `${latir}${plIDarray[0]}-${longir}${plIDarray[1]}-${year}${plIDarray[2]}-${timeline}`
-
-        message.channel.send(`coordinates are ${FinalCoord}`)
-        console.log('generation complete')
-
-        let location = {
-            name: args[3],
+           coordinates['locations'].push({
+            name: args[0],
             coordinate: finalCoord
+        })
+            console.log(coordinates);
+            coordinateFINALstring = JSON.stringify(coordinates, null, 2);
+
+            fs.writeFileSync('C:/Users/ifhm2/Autosys/commands/coordinates.json', coordinateFINALstring);
+
+
+    }
+    
+    { 
+        //check to see if a specified timeline exists 
+        for (var namesti in coordinates.timelines) {
+
+            var cont2 = true;
+            if (args[3] === coordinates.timelines[namesti].name) {
+                var timeline = coordinates.timelines[namesti].coordinate
+                cont2 = false;
+            } else if (args[3] === undefined) {
+                var timeline = coordinates.timelines[0].coordinate
+                cont2 = false;
+            }                   
+        }  
+            //generates and saves a new timeline, with coordinate
+        if (cont2 === true) {
+                //generates the timeline number                
+                var timeline = Math.random() * (4000 - 0000) + 0000;
+                timeline = Math.round(timeline);
+                //makes the timeline number + name into a JSON object and pushes it to the array
+                
+                coordinates['timelines'].push({
+                    name: args[3],
+                    coordinate: timeline
+                })
+                console.log(coordinates)
+            } 
+
+        //generate planet code
+        var argsCap = args[2].toUpperCase();
+        var plIDarray = argsCap.split("");
+
+        //adjusts year
+        var yearadj = 6000;
+        typeof (yearadj - 0);
+
+        var a = `${args[1]}`
+            b = `6000`
+
+
+        var year = ((a - 0) + (b - 0));
+
+        var latir = Math.floor(Math.random() * 1800);
+        var longir = Math.floor(Math.random() * 3600);
+            
+            var finalCoord = `${latir}${plIDarray[0]}-${longir}${plIDarray[1]}-${year}${plIDarray[2]}-${timeline}${plIDarray[4]}`
+    
+            message.channel.send(`coordinates are ${finalCoord}`)
+            console.log('generation complete')
+
+           coordinates['locations'].push({
+            name: args[0],
+            coordinate: finalCoord
+        })
+            console.log(coordinates);
+            coordinateFINALstring = JSON.stringify(coordinates, null, 2);
+
+            fs.writeFileSync('C:/Users/ifhm2/Autosys/commands/coordinates.json', coordinateFINALstring);
         }
-
-        let locationN = JSON.stringify(location, null, 2);
-
-        coordinates.locations += locationN
-        console.log(coordinates.locations)
-
+      
         }
     }
+}

@@ -1,22 +1,22 @@
 {
-    "timelines": 
-    [
-        {
-            "name": "anchorage15C",
-            "coordinate": "2301"
-        }
-        
-    ],
-
-    "locations":
-    [
-        {
-            "name": "themultiversal",
-            "coordinate": "0000M-0000T-9564V-2324"
-        },
-        {
-            "name": "timetravelersplanet",
-            "coordinate": "0000T-0000T-9405P-1859"
-        }
-    ]
+  "timelines": [
+    {
+      "name": "anchorage-15C",
+      "coordinate": "2301"
+    }
+  ],
+  "locations": [
+    {
+      "name": "themultiversal",
+      "coordinate": "0000M-0000T-9564V-2324L"
+    },
+    {
+      "name": "ice-cream-shop",
+      "coordinate": "0139V-1411E-7000N-2301S"
+    },
+    {
+      "name": "parnsip's-house",
+      "coordinate": "591E-3189A-7990R-2156H"
+    }
+  ]
 }

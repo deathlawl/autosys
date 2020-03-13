@@ -5,6 +5,6 @@
 	    // this will convert the args array into a string with spaces between arguments
 		var argsAsString = args.join(' ')
 
-	    message.channel.send(`${message.author} has been disconnected.`);
+	    message.channel.send(`${argsAsString} has been disconnected.`);
     }
 };

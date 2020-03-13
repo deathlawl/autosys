@@ -1,13 +1,29 @@
 {
   "timelines": [
     {
-      "name": "anchorage-15C",
+      "name": "Anchorage-15C",
       "coordinate": "2301"
+    },
+    {
+      "name": "hell",
+      "coordinate": 2260
+    },
+    {
+      "name": "Nuuk-532D",
+      "coordinate": 2357
+    },
+    {
+      "name": "Argos-43R",
+      "coordinate": 2548
+    },
+    {
+      "name": "Thaum-1",
+      "coordinate": 2882
     }
   ],
   "locations": [
     {
-      "name": "themultiversal",
+      "name": "the-multiversal",
       "coordinate": "0000M-0000T-9564V-2324L"
     },
     {
@@ -16,11 +32,27 @@
     },
     {
       "name": "parsnip's-house",
-      "coordinate": "558E-2754A-7990R-2301H"
+      "coordinate": "262E-3142A-7990R-2301H"
     },
     {
-      "name": "parsnip's-house",
-      "coordinate": "939E-3015A-7990R-2301H"
+      "name": "Rome",
+      "coordinate": "242E-3279A-6080R-2301H"
+    },
+    {
+      "name": "hell",
+      "coordinate": "1343H-3569E-9500L-2260L"
+    },
+    {
+      "name": "Ikea",
+      "coordinate": "303E-2199A-8021R-1971H"
+    },
+    {
+      "name": "Home",
+      "coordinate": "1722E-1688A-8021R-2548H"
+    },
+    {
+      "name": "thaumworld",
+      "coordinate": "382T-1844H-9000A-2882M"
     }
   ]
 }

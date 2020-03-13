@@ -103,22 +103,27 @@ module.exports = {
 
 
         var year = ((a - 0) + (b - 0));
-
+            //generates lat and lon 
         var latir = Math.floor(Math.random() * 1800);
         var longir = Math.floor(Math.random() * 3600);
             
+            //assembles finalCoord
             var finalCoord = `${latir}${plIDarray[0]}-${longir}${plIDarray[1]}-${year}${plIDarray[2]}-${timeline}${plIDarray[4]}`
-    
+            
+            //sends coord
             message.channel.send(`coordinates are ${finalCoord}`)
             console.log('generation complete')
 
+            //adds coord to array
            coordinates['locations'].push({
             name: args[0],
             coordinate: finalCoord
         })
+            //stringifiys
             console.log(coordinates);
             coordinateFINALstring = JSON.stringify(coordinates, null, 2);
 
+            //writes to JSON
             fs.writeFileSync('C:/Users/ifhm2/Autosys/commands/coordinates.json', coordinateFINALstring);
         }
       
